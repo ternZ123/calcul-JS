@@ -7,17 +7,12 @@ function numberWithSpacesInput(x) {
 function numberNoSpacesInput(x) {
     return x.value.replace(/\s/g, '');
 }
-
 //РІС‹РїР°РґР°С€РєР°
-
 // range
-
-
 //РєР°Р»СЊРєСѓР»СЏС‚РѕСЂ
 let newcalc = document.querySelector('#newcalc');
 let sliderwidth = document.querySelector('#sliderwidth');
 let sliderwidth2 = document.querySelector('#sliderwidth2');
-
 
 let su = document.querySelector('#su');
 let sutext = document.querySelector('#sutext');
@@ -43,7 +38,9 @@ let KEF;
 let SUMM;
 let FULL;
 let YP;
-let IMC={0:12, 1:18, 2:24, 3:36, 4:48, 5:60};
+let IMC=[12,18,24,36,48,60];
+let insRate=[5,10,15,20,25,30,35,40,49]
+let TYmas=[390,387]
 
 let KEF1 = [[1.09,1.13,1.17,1.24,1.32,1.40],
             [1.08,1.12,1.16,1.23,1.30,1.38],
@@ -80,8 +77,6 @@ su.addEventListener('change', function () {
 
     sliderwidthV = 100 * this.value / (this.max);
     sliderwidth.style.width = sliderwidthV + "%";
-
-
 }, false);
 su.addEventListener('input', function () {
     sutext.value = this.value;
@@ -115,24 +110,15 @@ let teIndexValue = 12;
 te.addEventListener('change', function () {
     teIndex = this.value;
 
-    teIndexValue = IMC[teIndex]//Я вывел все кридитнные месяцы в отдельный массив и уже работаю с масивом так как индекс у нас есть
+    teIndexValue = IMC[+teIndex]//Я вывел все кридитнные месяцы в отдельный массив и уже работаю с масивом так как индекс у нас есть
     tetext.value = teIndexValue;
     TE=teIndexValue;
     calkk();
-
-       /* sliderwidthV2 = 100 * this.value / (this.max);
-       sliderwidth2.style.width = sliderwidthV2 + "%";*/
-
-       /*console.log(this.max);
-       console.log(this.min);
-       console.log(this.value);*/
-
-
 }, false);
 te.addEventListener('input', function () {
     teIndex = this.value;
 
-    teIndexValue = IMC[teIndex]
+    teIndexValue = IMC[+teIndex]
 
     tetext.value = teIndexValue;
     TE=teIndexValue;
@@ -142,48 +128,22 @@ tetext.addEventListener('input', function(){
 
     teIndexValue = this.value;
 
-    for ( let key in IMC){
-        if (teIndexValue === IMC[key]) {
-            teIndex = key;
-        }
-    }
-    
-    console.log(teIndexValue)
+    te.value = IMC.indexOf(+teIndexValue) // находим в массиве наше значение и выводим индекс
 
-    te.value = teIndex;
     TE=teIndexValue;
 
     calkk();
 
 })
 
-var coIndex = 1;
-var coIndexValue = 5;
+let coIndex = 1;
+let coIndexValue = 5;
+
 
 co.addEventListener('change', function () {
     coIndex = this.value;
 
-    if (coIndex === 1) {
-        coIndexValue = 5;
-    } else if (coIndex === 2) {
-        coIndexValue = 10;
-    } else if (coIndex === 3) {
-        coIndexValue = 15;
-    } else if (coIndex === 4) {
-        coIndexValue = 20;
-    } else if (coIndex === 5) {
-        coIndexValue = 25;
-    } else if (coIndex === 6) {
-        coIndexValue = 30;
-    } else if (coIndex === 7) {
-        coIndexValue = 35;
-    } else if (coIndex === 8) {
-        coIndexValue = 40;
-        // } else if (coIndex == 9) {
-        //     coIndexValue = 45;
-    } else {
-        coIndexValue = 49;
-    }
+    coIndexValue=insRate[coIndex]//Я вывел все проценты в отдельный массив и уже работаю с масивом так как индекс у нас есть
 
     cotext.value = coIndexValue;
     calkk();
@@ -194,27 +154,7 @@ co.addEventListener('change', function () {
 co.addEventListener('input', function () {
     coIndex = this.value;
 
-    if (coIndex === 1) {
-        coIndexValue = 5;
-    } else if (coIndex === 2) {
-        coIndexValue = 10;
-    } else if (coIndex === 3) {
-        coIndexValue = 15;
-    } else if (coIndex === 4) {
-        coIndexValue = 20;
-    } else if (coIndex === 5) {
-        coIndexValue = 25;
-    } else if (coIndex === 6) {
-        coIndexValue = 30;
-    } else if (coIndex === 7) {
-        coIndexValue = 35;
-    } else if (coIndex === 8) {
-        coIndexValue = 40;
-        // } else if (coIndex == 9) {
-        //     coIndexValue = 45;
-    } else {
-        coIndexValue = 49;
-    }
+    coIndexValue=insRate[coIndex]
 
     cotext.value = coIndexValue;
     CO = cotext.value;
@@ -222,30 +162,8 @@ co.addEventListener('input', function () {
 cotext.addEventListener('input', function(){
 
     coIndexValue = this.value;
-
-    if (coIndexValue === 5) {
-        coIndex = 1;
-    } else if (coIndexValue === 10) {
-        coIndex = 2;
-    } else if (coIndexValue === 15) {
-        coIndex = 3;
-    } else if (coIndexValue === 20) {
-        coIndex = 4;
-    } else if (coIndexValue === 25) {
-        coIndex = 5;
-    } else if (coIndexValue === 30) {
-        coIndex = 6;
-    } else if (coIndexValue === 35) {
-        coIndex = 7;
-    } else if (coIndexValue === 40) {
-        coIndex = 8;
-        // } else if (coIndexValue == 45) {
-        //     coIndex = 9;
-    } else {
-        coIndex = 9;
-    }
-
-    co.value = coIndex;
+    /*ищем массиве индекс входящего значения */
+    co.value=insRate.indexOf(+coIndexValue)
 
     coprofloat = (su.value/100)*coIndexValue;
     coprofloat = Math.round(coprofloat * Math.pow(10,2))/ Math.pow(10, 2);
@@ -277,329 +195,17 @@ ty.addEventListener('input', function(){
 
 
 function calkk(){
-    if(TY===390 && CO===5 && TE===12){
-        KEF = KEF1[0][0];
-    }
-    if(TY===390 && CO===5 && TE===18){
-        KEF = KEF1[0][1];
-    }
-    if(TY===390 && CO===5 && TE===24){
-        KEF = KEF1[0][2];
-    }
-    if(TY===390 && CO===5 && TE===36){
-        KEF = KEF1[0][3];
-    }
-    if(TY===390 && CO===5 && TE===48){
-        KEF = KEF1[0][4];
-    }
-    if(TY===390 && CO===5 && TE===60){
-        KEF = KEF1[0][5];
-    }
-
-    if(TY==390 && CO==10 && TE==12){
-        KEF = KEF1[1][0];
-    }
-    if(TY==390 && CO==10 && TE==18){
-        KEF = KEF1[1][1];
-    }
-    if(TY==390 && CO==10 && TE==24){
-        KEF = KEF1[1][2];
-    }
-    if(TY==390 && CO==10 && TE==36){
-        KEF = KEF1[1][3];
-    }
-    if(TY==390 && CO==10 && TE==48){
-        KEF = KEF1[1][4];
-    }
-    if(TY==390 && CO==10 && TE==60){
-        KEF = KEF1[1][5];
-    }
-
-    if(TY==390 && CO==15 && TE==12){
-        KEF = KEF1[2][0];
-    }
-    if(TY==390 && CO==15 && TE==18){
-        KEF = KEF1[2][1];
-    }
-    if(TY==390 && CO==15 && TE==24){
-        KEF = KEF1[2][2];
-    }
-    if(TY==390 && CO==15 && TE==36){
-        KEF = KEF1[2][3];
-    }
-    if(TY==390 && CO==15 && TE==48){
-        KEF = KEF1[2][4];
-    }
-    if(TY==390 && CO==15 && TE==60){
-        KEF = KEF1[2][5];
-    }
-
-    if(TY==390 && CO==20 && TE==12){
-        KEF = KEF1[3][0];
-    }
-    if(TY==390 && CO==20 && TE==18){
-        KEF = KEF1[3][1];
-    }
-    if(TY==390 && CO==20 && TE==24){
-        KEF = KEF1[3][2];
-    }
-    if(TY==390 && CO==20 && TE==36){
-        KEF = KEF1[3][3];
-    }
-    if(TY==390 && CO==20 && TE==48){
-        KEF = KEF1[3][4];
-    }
-    if(TY==390 && CO==20 && TE==60){
-        KEF = KEF1[3][5];
-    }
-
-    if(TY==390 && CO==25 && TE==12){
-        KEF = KEF1[4][0];
-    }
-    if(TY==390 && CO==25 && TE==18){
-        KEF = KEF1[4][1];
-    }
-    if(TY==390 && CO==25 && TE==24){
-        KEF = KEF1[4][2];
-    }
-    if(TY==390 && CO==25 && TE==36){
-        KEF = KEF1[4][3];
-    }
-    if(TY==390 && CO==25 && TE==48){
-        KEF = KEF1[4][4];
-    }
-    if(TY==390 && CO==25 && TE==60){
-        KEF = KEF1[4][5];
-    }
-
-    if(TY==390 && CO==30 && TE==12){
-        KEF = KEF1[5][0];
-    }
-    if(TY==390 && CO==30 && TE==18){
-        KEF = KEF1[5][1];
-    }
-    if(TY==390 && CO==30 && TE==24){
-        KEF = KEF1[5][2];
-    }
-    if(TY==390 && CO==30 && TE==36){
-        KEF = KEF1[5][3];
-    }
-    if(TY==390 && CO==30 && TE==48){
-        KEF = KEF1[5][4];
-    }
-    if(TY==390 && CO==30 && TE==60){
-        KEF = KEF1[5][5];
-    }
-
-    if(TY==390 && CO==35 && TE==12){
-        KEF = KEF1[6][0];
-    }
-    if(TY==390 && CO==35 && TE==18){
-        KEF = KEF1[6][1];
-    }
-    if(TY==390 && CO==35 && TE==24){
-        KEF = KEF1[6][2];
-    }
-    if(TY==390 && CO==35 && TE==36){
-        KEF = KEF1[6][3];
-    }
-    if(TY==390 && CO==35 && TE==48){
-        KEF = KEF1[6][4];
-    }
-    if(TY==390 && CO==35 && TE==60){
-        KEF = KEF1[6][5];
-    }
-
-    if(TY==390 && CO==40 && TE==12){
-        KEF = KEF1[7][0];
-    }
-    if(TY==390 && CO==40 && TE==18){
-        KEF = KEF1[7][1];
-    }
-    if(TY==390 && CO==40 && TE==24){
-        KEF = KEF1[7][2];
-    }
-    if(TY==390 && CO==40 && TE==36){
-        KEF = KEF1[7][3];
-    }
-    if(TY==390 && CO==40 && TE==48){
-        KEF = KEF1[7][4];
-    }
-    if(TY==390 && CO==40 && TE==60){
-        KEF = KEF1[7][5];
-    }
-
-    if(TY==390 && CO==49 && TE==12){
-        KEF = KEF1[8][0];
-    }
-    if(TY==390 && CO==49 && TE==18){
-        KEF = KEF1[8][1];
-    }
-    if(TY==390 && CO==49 && TE==24){
-        KEF = KEF1[8][2];
-    }
-    if(TY==390 && CO==49 && TE==36){
-        KEF = KEF1[8][3];
-    }
-    if(TY==390 && CO==49 && TE==48){
-        KEF = KEF1[8][4];
-    }
-    if(TY==390 && CO==49 && TE==60){
-        KEF = KEF1[8][5];
-    }
-
-
-
-    if(TY==387 && CO==10 && TE==12){
-        KEF = KEF2[0][0];
-    }
-    if(TY==387 && CO==10 && TE==18){
-        KEF = KEF2[0][1];
-    }
-    if(TY==387 && CO==10 && TE==24){
-        KEF = KEF2[0][2];
-    }
-    if(TY==387 && CO==10 && TE==36){
-        KEF = KEF2[0][3];
-    }
-    if(TY==387 && CO==10 && TE==48){
-        KEF = KEF2[0][4];
-    }
-    if(TY==387 && CO==10 && TE==60){
-        KEF = KEF2[0][5];
-    }
-
-    if(TY==387 && CO==15 && TE==12){
-        KEF = KEF2[1][0];
-    }
-    if(TY==387 && CO==15 && TE==18){
-        KEF = KEF2[1][1];
-    }
-    if(TY==387 && CO==15 && TE==24){
-        KEF = KEF2[1][2];
-    }
-    if(TY==387 && CO==15 && TE==36){
-        KEF = KEF2[1][3];
-    }
-    if(TY==387 && CO==15 && TE==48){
-        KEF = KEF2[1][4];
-    }
-    if(TY==387 && CO==15 && TE==60){
-        KEF = KEF2[1][5];
-    }
-
-    if(TY==387 && CO==20 && TE==12){
-        KEF = KEF2[2][0];
-    }
-    if(TY==387 && CO==20 && TE==18){
-        KEF = KEF2[2][1];
-    }
-    if(TY==387 && CO==20 && TE==24){
-        KEF = KEF2[2][2];
-    }
-    if(TY==387 && CO==20 && TE==36){
-        KEF = KEF2[2][3];
-    }
-    if(TY==387 && CO==20 && TE==48){
-        KEF = KEF2[2][4];
-    }
-    if(TY==387 && CO==20 && TE==60){
-        KEF = KEF2[2][5];
-    }
-
-    if(TY==387 && CO==25 && TE==12){
-        KEF = KEF2[3][0];
-    }
-    if(TY==387 && CO==25 && TE==18){
-        KEF = KEF2[3][1];
-    }
-    if(TY==387 && CO==25 && TE==24){
-        KEF = KEF2[3][2];
-    }
-    if(TY==387 && CO==25 && TE==36){
-        KEF = KEF2[3][3];
-    }
-    if(TY==387 && CO==25 && TE==48){
-        KEF = KEF2[3][4];
-    }
-    if(TY==387 && CO==25 && TE==60){
-        KEF = KEF2[3][5];
-    }
-
-    if(TY==387 && CO==30 && TE==12){
-        KEF = KEF2[4][0];
-    }
-    if(TY==387 && CO==30 && TE==18){
-        KEF = KEF2[4][1];
-    }
-    if(TY==387 && CO==30 && TE==24){
-        KEF = KEF2[4][2];
-    }
-    if(TY==387 && CO==30 && TE==36){
-        KEF = KEF2[4][3];
-    }
-    if(TY==387 && CO==30 && TE==48){
-        KEF = KEF2[4][4];
-    }
-    if(TY==387 && CO==30 && TE==60){
-        KEF = KEF2[4][5];
-    }
-
-    if(TY==387 && CO==35 && TE==12){
-        KEF = KEF2[5][0];
-    }
-    if(TY==387 && CO==35 && TE==18){
-        KEF = KEF2[5][1];
-    }
-    if(TY==387 && CO==35 && TE==24){
-        KEF = KEF2[5][2];
-    }
-    if(TY==387 && CO==35 && TE==36){
-        KEF = KEF2[5][3];
-    }
-    if(TY==387 && CO==35 && TE==48){
-        KEF = KEF2[5][4];
-    }
-    if(TY==387 && CO==35 && TE==60){
-        KEF = KEF2[5][5];
-    }
-
-    if(TY==387 && CO==40 && TE==12){
-        KEF = KEF2[6][0];
-    }
-    if(TY==387 && CO==40 && TE==18){
-        KEF = KEF2[6][1];
-    }
-    if(TY==387 && CO==40 && TE==24){
-        KEF = KEF2[6][2];
-    }
-    if(TY==387 && CO==40 && TE==36){
-        KEF = KEF2[6][3];
-    }
-    if(TY==387 && CO==40 && TE==48){
-        KEF = KEF2[6][4];
-    }
-    if(TY==387 && CO==40 && TE==60){
-        KEF = KEF2[6][5];
-    }
-
-    if(TY==387 && CO==49 && TE==12){
-        KEF = KEF2[7][0];
-    }
-    if(TY==387 && CO==49 && TE==18){
-        KEF = KEF2[7][1];
-    }
-    if(TY==387 && CO==49 && TE==24){
-        KEF = KEF2[7][2];
-    }
-    if(TY==387 && CO==49 && TE==36){
-        KEF = KEF2[7][3];
-    }
-    if(TY==387 && CO==49 && TE==48){
-        KEF = KEF2[7][4];
-    }
-    if(TY==387 && CO==49 && TE==60){
-        KEF = KEF2[7][5];
+    let i ,j
+    for (let tyI of TYmas){
+        if (TY===390){
+            i= insRate.indexOf(+CO)
+            j= IMC.indexOf(+TE)
+            KEF = KEF1[i][j];
+        }else if (TY===387){
+            i= insRate.indexOf(+CO)
+            j= IMC.indexOf(+TE)
+            KEF = KEF2[i][j];
+        }
     }
 
     SUMM = (SU*KEF-SU*(CO/100))/TE;
