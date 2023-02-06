@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Calk</title>
+</head>
+<body>
+
+<!-- КАЛЬКУЛЯТОР-->
+<section class="newcalc" id="newcalc">
+    <div class="container">
+
+        <div class="newcalc__wrap">
+            <div class="newcalc__info">
+                <div class="newcalc__info-wr">
+
+                    <div class="col_right active">
+
+
+                        <div class="newcalc__info-item">
+                            <div class="newcalc__info-title">
+                                Ежемесячный платеж
+                            </div>
+                            <div class="newcalc__info-summ">
+                                от <span class="summ">0</span> ₽
+                            </div>
+                        </div>
+
+                        <div class="newcalc__info-item">
+                            <div class="newcalc__info-li">
+                                <div class="newcalc__info-desc">Сумма договора лизинга:</div>
+                                <div class="newcalc__info-value"><span class="full">0</span> ₽</div>
+                            </div>
+                            <div class="newcalc__info-li">
+                                <div class="newcalc__info-desc">Годовое удорожание:</div>
+                                <div class="newcalc__info-value"><span class="ud">0</span> %</div>
+                            </div>
+                            <div class="newcalc__info-li">
+                                <div class="newcalc__info-desc">Коэффициент (для тестирования):</div>
+                                <div class="newcalc__info-value"><span class="kef">0</span></div>
+                            </div>
+                        </div>
+
+                        <div class="newcalc__info-item">
+                            <div class="newcalc__info-btn">
+                                <a href="#" class="head_btn">Найти предложение</a>
+
+                            </div>
+                            <div class="newcalc__info-btndesc">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="newcalc__calc">
+                <div class="newcalc__header">
+                    <h2 class="newcalc__title">
+                        Калькулятор
+                    </h2>
+                </div>
+
+                <div class="newcalc__calc-item">
+                    <label>
+                        <span class="newcalc__calc-type">Сумма кредита</span>
+                        <div class="newcalc__input-rub">
+
+                            <input onblur="this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ')" onfocus="this.value = this.value.replace(/\s/g, '')" name="cost" value="" id="sutext" class="newcalc__input" value="20 000 000" placeholder="20 000 000">
+                        </div>
+                        <div>
+                        </div>
+                        <div class="slider-container">
+                            <span class="bar"><span class="fill"></span></span>
+                            <input type="range" min="2000000" max="120000000" step="10000" id="su" class="slider">
+                            <div class="slider_wrapper-desc">
+                                <div class="slider_wrapper-desc-item">2 000 000 ₽</div>
+                                <div class="slider_wrapper-desc-item">120 000 000 ₽</div>
+                            </div>
+                        </div>
+
+                    </label>
+                </div>
+                <div class="newcalc__calc-item">
+                    <label>
+                        <span class="newcalc__calc-type">Срок кредита</span>
+
+                        <select id="tetext" class="newcalc__input">
+                            <option value="12">12</option>
+                            <option value="18">18</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="60">60</option>
+                        </select><br>
+                        <div class="slider-container">
+                            <span class="bar"><span class="fill"></span></span>
+                            <input type="range" min="0" max="5" step="1" id="te" class="slider">
+
+                            <div class="slider_wrapper" id="slider2">
+                                <div class="slider_captions clearfix">
+                                    <div class="slider_cap" id="slider_cap1">12</div>
+                                    <div class="slider_cap" id="slider_cap2">18</div>
+                                    <div class="slider_cap" id="slider_cap3">24</div>
+                                    <div class="slider_cap" id="slider_cap4">36</div>
+                                    <div class="slider_cap" id="slider_cap5">48</div>
+                                    <div class="slider_cap" id="slider_cap6">60</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </label>
+                </div>
+
+                <div class="newcalc__calc-item">
+                    <label>
+                        <span class="newcalc__calc-type">Первоначальный взнос</span>
+
+
+
+                        <div class="input__item_second">
+                            <div class="input__item_second-item">
+                                <select id="cotext" class="newcalc__input">
+                                    <option value="5" id="five">5%</option>
+                                    <option value="10">10%</option>
+                                    <option value="15">15%</option>
+                                    <option value="20">20%</option>
+                                    <option value="25">25%</option>
+                                    <option value="30">30%</option>
+                                    <option value="35">35%</option>
+                                    <option value="40">40%</option>
+                                    <!-- <option value="45">45%</option> -->
+                                    <option value="49">49%</option>
+                                </select>
+                            </div>
+                            <div class="field input__item_second-sum"> <span class="copro">0</span> ₽</div>
+                        </div>
+
+                        <div class="slider-container">
+                            <span class="bar"><span class="fill"></span></span>
+                            <input type="range" min="1" max="9" step="1" id="co" class="slider">
+
+                            <div class="slider_wrapper" id="slider2-2">
+                                <div class="slider_captions clearfix">
+                                    <div class="slider_cap-2" id="slider_cap-20">5%</div>
+                                    <div class="slider_cap-2" id="slider_cap-21">10%</div>
+                                    <div class="slider_cap-2" id="slider_cap-22">15%</div>
+                                    <div class="slider_cap-2" id="slider_cap-23">20%</div>
+                                    <div class="slider_cap-2" id="slider_cap-24">25%</div>
+                                    <div class="slider_cap-2" id="slider_cap-25">30%</div>
+                                    <div class="slider_cap-2" id="slider_cap-26">35%</div>
+                                    <div class="slider_cap-2" id="slider_cap-27">40%</div>
+                                    <!-- <div class="slider_cap-2" id="slider_cap-28">45%</div> -->
+                                    <div class="slider_cap-2" id="slider_cap-29">49%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="newcalc__calc-item">
+                    <label>
+                        <span class="newcalc__calc-type">Тип квартиры</span>
+                        <select name="choice" class="newcalc__input" id="ty">
+                            <option value="390" selected>Квартира в новостройке</option>
+                            <option value="390">Квартира во вторичке</option>
+                            <option value="387">Земельный участок</option>
+                            <option value="387">Частный дом</option>
+                        </select>
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- // стили калькулятор-->
+
+<script src="js/script.js"></script>
+</body>
+</html>
